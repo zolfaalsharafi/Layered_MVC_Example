@@ -1,12 +1,21 @@
-﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.DependencyInjection;
-using MVC_Example.Data;
+﻿using BusinessLayer.Services;
+using Microsoft.EntityFrameworkCore;
+using MVC_Example.DataAccessLayer.Data;
+using MVC_Example.DataAccessLayer.Repositories;
+using MVC_Example.Dtos;
+
 var builder = WebApplication.CreateBuilder(args);
-builder.Services.AddDbContext<MVC_ExampleContext>(options =>
+builder.Services.AddDbContext<ApplicationContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("MVC_ExampleContext") ?? throw new InvalidOperationException("Connection string 'MVC_ExampleContext' not found.")));
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+builder.Services.AddScoped<IProductService, ProductService>();
+
+builder.Services.AddScoped(typeof(IRepository<>), typeof(BaseRepository<>));
+builder.Services.AddScoped<ICrudService<UserDto>, UserService>();
+builder.Services.AddScoped<ICrudService<CategoryDto>, CategoryService>();
 
 var app = builder.Build();
 

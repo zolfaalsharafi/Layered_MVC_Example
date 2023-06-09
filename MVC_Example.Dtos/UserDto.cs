@@ -1,11 +1,9 @@
-﻿namespace MVC_Example.Models
+﻿namespace MVC_Example.Dtos
 {
-    public class User
+    public class UserDto : BaseDto
     {
-        public int ID { get; set; }
         public string FirstName { get; set; }
         public string SecondName { get; set; }
         public string Email { get; set; }
-        public DateTime CreatedDate { get; set; }
     }
 }
