@@ -11,10 +11,13 @@ using System.Threading.Tasks;
 
 namespace BusinessLayer.Services
 {
-    public class UserService : BaseCrudService<UserDto,User>
+    public class UserService : BaseCrudService<UserDto,User> 
     {
+        private readonly IEmailService emailService;
+
         public UserService(IRepository<User> repo) : base(repo)
         {
+            this.emailService = emailService;
         }
 
         protected override User MapToModel(UserDto userDto)
@@ -51,5 +54,9 @@ namespace BusinessLayer.Services
                 CreatedDate = t.CreatedDate,
             }).ToList();
         }
-    }
+
+        
+
+
+}
 }

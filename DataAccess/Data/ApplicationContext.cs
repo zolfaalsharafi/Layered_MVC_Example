@@ -15,5 +15,7 @@ namespace MVC_Example.DataAccessLayer.Data
         public DbSet<Product> Product { get; set; } = default!;
 
         public DbSet<Category> Categories { get; set; } = default!;
+
+        public DbSet<Country> Countries { get; set; } = default!;
     }
 }
